@@ -1,0 +1,18 @@
+import { Fragment } from "react/jsx-runtime";
+import Header from "../components/Layout/Header";
+
+import "./App.css";
+import Meals from "../components/Meals/Meals";
+
+function App() {
+  return (
+    <Fragment>
+      <Header />
+      <main>
+        <Meals />
+      </main>
+    </Fragment>
+  );
+}
+
+export default App;
