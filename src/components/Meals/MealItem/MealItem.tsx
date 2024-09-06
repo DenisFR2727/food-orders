@@ -4,10 +4,10 @@ import classes from "./MealItem.module.scss";
 import MealItemForm from "./MealItemForm";
 
 interface MealProps {
-  item: IMeal;
+  meal: IMeal;
 }
-function MealItem(props: MealProps) {
-  const { name, description, price } = props.item;
+function MealItem({ meal }: MealProps) {
+  const { name, description, price } = meal;
   return (
     <li className={classes.meal}>
       <div>
@@ -16,7 +16,7 @@ function MealItem(props: MealProps) {
         <div className={classes.price}>{price}</div>
       </div>
       <div className={classes.form}>
-        <MealItemForm />
+        <MealItemForm meal={meal} />
       </div>
     </li>
   );

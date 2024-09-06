@@ -1,12 +1,14 @@
 import Card from "../UI/Card";
 import MealItem from "./MealItem/MealItem";
 import classes from "./AvailableMeals.module.scss";
+import { FC } from "react";
 
 export interface IMeal {
   id: number;
   name: string;
   description: string;
   price: number;
+  amount?: number;
 }
 const DUMMY_MEALS: IMeal[] = [
   {
@@ -34,11 +36,11 @@ const DUMMY_MEALS: IMeal[] = [
     price: 18.99,
   },
 ];
-const AvailableMeals = () => {
-  const mealList = (
+const AvailableMeals: FC = () => {
+  const mealList: JSX.Element = (
     <ul>
       {DUMMY_MEALS.map((meal: IMeal, index: number) => (
-        <MealItem key={index} item={meal} />
+        <MealItem key={index} meal={meal} />
       ))}
     </ul>
   );

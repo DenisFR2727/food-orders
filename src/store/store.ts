@@ -1,7 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-// import rootReducer from "./rootReducer";
+import mealsSlice from "../reducer/mealsSlice";
 const store = configureStore({
-  reducer: {},
+  reducer: mealsSlice,
 });
 export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 export { store };

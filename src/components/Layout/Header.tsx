@@ -1,14 +1,38 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import mealsImage from "../../assets/img/meals.jpg";
 import classes from "./Header.module.scss";
+import { useAppDispatch, useAppSelector } from "../../reducer/hooks";
+import { showCartAction } from "../../reducer/mealsSlice";
+
 function Header() {
+  const dispatch = useAppDispatch();
+  const [itemAdded, setItemAdded] = useState(false);
+  const meals = useAppSelector((state) => state.meals);
+  const amountItems = meals.reduce((acc, next: any) => acc + next.amount, 0);
+
+  const btnClasses = `${classes.button} ${itemAdded && classes.bump}`;
+
+  const openCart = () => {
+    dispatch(showCartAction(true));
+  };
+
+  useEffect(() => {
+    setItemAdded(true);
+    const timer = setTimeout(() => {
+      setItemAdded(false);
+    }, 300);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [meals]);
   return (
     <Fragment>
       <header className={classes.header}>
         <div className={classes.headerMenu}>
           <h2>ReactMeals</h2>
-          <button className={classes.cart}>
-            <span className={classes.cartIcon}>
+          <button className={btnClasses} onClick={openCart}>
+            <span className={classes.icon}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
@@ -18,7 +42,7 @@ function Header() {
               </svg>
             </span>
             <span className={classes.text}>Your Cart</span>
-            <span className={classes.count}>0</span>
+            <span className={classes.badge}>{amountItems}</span>
           </button>
         </div>
       </header>
