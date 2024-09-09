@@ -4,11 +4,13 @@ import { IMeal } from "../components/Meals/AvailableMeals";
 interface MealState {
   meals: IMeal[];
   showCart: boolean;
+  totalAmount: number;
 }
 
 const initialState: MealState = {
   meals: [],
   showCart: false,
+  totalAmount: 0,
 };
 
 export const mealsSlice = createSlice({
@@ -16,6 +18,8 @@ export const mealsSlice = createSlice({
   initialState,
   reducers: {
     addMeal: (state, action: PayloadAction<IMeal>) => {
+      state.totalAmount += action.payload.price * action.payload.amount!;
+
       const existingMealIndex = state.meals.findIndex(
         (meal) => meal.id === action.payload.id
       );
@@ -25,10 +29,27 @@ export const mealsSlice = createSlice({
         state.meals.push(action.payload);
       }
     },
+    removeMeal: (state, action: PayloadAction<number>) => {
+      const existingMealIndex = state.meals.findIndex(
+        (meal) => meal.id === action.payload
+      );
+      const existingMeal = state.meals[existingMealIndex];
+      state.totalAmount -= existingMeal.price;
+      if (existingMeal.amount === 1) {
+        state.meals = state.meals.filter((meal) => meal.id !== action.payload);
+      } else {
+        existingMeal.amount! -= 1;
+      }
+    },
+    emptyCart: (state) => {
+      state.meals = [];
+      state.totalAmount = 0;
+    },
     showCartAction: (state, action: PayloadAction<boolean>) => {
       state.showCart = action.payload;
     },
   },
 });
-export const { addMeal, showCartAction } = mealsSlice.actions;
+export const { addMeal, showCartAction, removeMeal, emptyCart } =
+  mealsSlice.actions;
 export default mealsSlice.reducer;
