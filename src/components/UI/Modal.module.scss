@@ -10,7 +10,7 @@
 
 .modal {
   position: fixed;
-  top: 10vh;
+  top: 20vh;
   left: 5%;
   width: 90%;
   background-color: white;
@@ -18,18 +18,20 @@
   border-radius: 14px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   z-index: 30;
+  max-height: 60vh;
+  overflow-y: auto;
   animation: slide-down 300ms ease-out forwards;
+  padding-right: 1rem;
 }
-// .content {
-//   width: 70%;
-//   height: 70%;
-//   background-color: #282c34;
-//   color: #fff;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   font-size: 2rem;
-// }
+.modal::-webkit-scrollbar {
+  width: 0; /* Прибираємо видимість скролу для WebKit-браузерів */
+}
+.modal {
+  scrollbar-width: none; /* Прибираємо видимість скролу для Firefox */
+}
+.modal::-webkit-scrollbar {
+  display: none; /* Прибираємо видимість скролу для WebKit-браузерів */
+}
 @media (min-width: 768px) {
   .modal {
     width: 40rem;
