@@ -1,4 +1,3 @@
-import React from "react";
 import classes from "./Card.module.scss";
 
 function Card(props: any) {

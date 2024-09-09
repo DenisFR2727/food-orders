@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import mealsImage from "../../assets/img/meals.jpg";
 import classes from "./Header.module.scss";
 import { useAppDispatch, useAppSelector } from "../../reducer/hooks";
