@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import { useAppDispatch, useAppSelector } from "../../reducer/hooks";
 import {
   addMeal,

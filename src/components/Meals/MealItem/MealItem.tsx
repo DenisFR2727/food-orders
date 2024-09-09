@@ -1,4 +1,3 @@
-import React from "react";
 import { IMeal } from "../AvailableMeals";
 import classes from "./MealItem.module.scss";
 import MealItemForm from "./MealItemForm";
