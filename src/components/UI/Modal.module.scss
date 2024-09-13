@@ -49,3 +49,62 @@
     transform: translateY(0);
   }
 }
+// Modal info
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modalInfo {
+  position: fixed;
+
+  top: 20vh;
+  left: 5%;
+  width: 90%;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 30;
+  max-height: 60vh;
+  overflow-y: hidden; /* Прибираємо видимість скролу */
+  animation: slide-down 300ms ease-out forwards;
+}
+
+.contentInfo {
+  display: flex;
+  justify-content: center;
+  font-weight: 700;
+  max-height: 100%;
+  text-align: center;
+  overflow-y: auto; /* Додаємо прокрутку для вмісту */
+  padding-right: 1rem; /* Додаємо відступ для прихованого скролу */
+}
+
+.contentInfo::-webkit-scrollbar {
+  width: 0; /* Прибираємо видимість скролу для WebKit-браузерів */
+}
+
+@media (min-width: 768px) {
+  .modalInfo {
+    width: 40rem;
+    left: calc(50% - 20rem);
+    max-height: 80vh; /* Збільшуємо максимальну висоту для більших екранів */
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

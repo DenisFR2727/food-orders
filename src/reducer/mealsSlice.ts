@@ -4,12 +4,14 @@ import { IMeal } from "../components/Meals/AvailableMeals";
 interface MealState {
   meals: IMeal[];
   showCart: boolean;
+  showInformation: boolean;
   totalAmount: number;
 }
 
 const initialState: MealState = {
   meals: [],
   showCart: false,
+  showInformation: false,
   totalAmount: 0,
 };
 
@@ -48,8 +50,16 @@ export const mealsSlice = createSlice({
     showCartAction: (state, action: PayloadAction<boolean>) => {
       state.showCart = action.payload;
     },
+    showInformation: (state, action: PayloadAction<boolean>) => {
+      state.showInformation = action.payload;
+    },
   },
 });
-export const { addMeal, showCartAction, removeMeal, emptyCart } =
-  mealsSlice.actions;
+export const {
+  addMeal,
+  showCartAction,
+  removeMeal,
+  emptyCart,
+  showInformation,
+} = mealsSlice.actions;
 export default mealsSlice.reducer;
