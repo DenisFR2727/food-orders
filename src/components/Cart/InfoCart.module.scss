@@ -6,3 +6,16 @@
   text-align: center;
   margin: 0 auto;
 }
+.close {
+  position: absolute;
+  top: 0;
+  left: 609px;
+  font-size: 20px;
+  background-color: orange;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}

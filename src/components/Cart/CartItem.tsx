@@ -2,7 +2,7 @@ import classes from "./CartItem.module.scss";
 
 function CartItem(props: any) {
   const item = props.meal;
-  const price = `$${item.price.toFixed(2)}`;
+  const price: string = `$${item.price.toFixed(2)}`;
 
   return (
     <li className={classes["cart-item"]}>

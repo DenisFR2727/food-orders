@@ -11,11 +11,11 @@ interface ModalProps {
   children: React.ReactNode;
 }
 
-const Backdrop = (props: { onClose: () => void }) => {
+const Backdrop: React.FC<{ onClose: () => void }> = (props) => {
   return <div className={classes.backdrop} onClick={props.onClose} />;
 };
 
-const ModalOverlay = (props: ModalOverlayProps) => {
+const ModalOverlay: React.FC<ModalOverlayProps> = (props) => {
   return (
     <div className={classes.modal}>
       <div className={classes.content}>{props.children}</div>

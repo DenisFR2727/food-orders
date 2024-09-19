@@ -18,7 +18,6 @@ function MealItem({ meal }: MealProps) {
         <MealItemForm meal={meal} />
       </div>
     </li>
-  );
+  ) as JSX.Element;
 }
-
 export default MealItem;

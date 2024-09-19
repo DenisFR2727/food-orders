@@ -9,17 +9,17 @@ interface MealItemFormProps {
 }
 
 function MealItemForm({ meal }: MealItemFormProps) {
-  const [amount, setAmount] = useState(1);
+  const [amount, setAmount] = useState<number>(1);
   const dispatch = useAppDispatch();
 
-  const submitHandler = (e: React.FormEvent) => {
+  const submitHandler = (e: React.FormEvent): void => {
     e.preventDefault();
     const mealWithAmount: IMeal = { ...meal, amount };
     dispatch(addMeal(mealWithAmount));
-    console.log(amount);
   };
   const changeCounter = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAmount(+e.target.value);
+    let countAmount = +e.target.value;
+    setAmount(countAmount);
   };
   return (
     <form className={classes.form} onSubmit={submitHandler}>
@@ -30,6 +30,7 @@ function MealItemForm({ meal }: MealItemFormProps) {
           onChange={changeCounter}
           defaultValue={amount}
           type="number"
+          min={1}
         />
       </div>
       <button>+ Add</button>

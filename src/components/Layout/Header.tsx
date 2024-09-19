@@ -3,28 +3,29 @@ import mealsImage from "../../assets/img/meals.jpg";
 import classes from "./Header.module.scss";
 import { useAppDispatch, useAppSelector } from "../../reducer/hooks";
 import { showCartAction, showInformation } from "../../reducer/mealsSlice";
+import { getMeals } from "../../store/selectors";
 
 function Header() {
   const dispatch = useAppDispatch();
-  const [itemAdded, setItemAdded] = useState(false);
-  const meals = useAppSelector((state) => state.meals);
+  const [itemAdded, setItemAdded] = useState<boolean>(false);
+  const meals = useAppSelector(getMeals);
   const amountItems = meals.reduce((acc, next: any) => acc + next.amount, 0);
 
   const btnClasses = `${classes.button} ${itemAdded && classes.bump}`;
 
-  const openCart = () => {
+  const openCart = (): void => {
     dispatch(showCartAction(true));
   };
-  const openIconInformation = () => {
+  const openIconInformation = (): void => {
     dispatch(showInformation(true));
   };
   useEffect(() => {
     setItemAdded(true);
-    const timer = setTimeout(() => {
+    const timer = setTimeout((): void => {
       setItemAdded(false);
     }, 300);
 
-    return () => {
+    return (): void => {
       clearTimeout(timer);
     };
   }, [meals]);
